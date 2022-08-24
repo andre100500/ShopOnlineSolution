@@ -27,11 +27,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(policy=>
-    policy.WithOrigins("https://localhost:7120/", "https://localhost:7120/")
-    .AllowAnyMethod()
-    .WithHeaders(HeaderNames.ContentType)
-);
+//app.UseCors(policy=>
+//    policy.WithOrigins("https://localhost:7120/", "https://localhost:7120/")
+//    .AllowAnyMethod()
+//    .WithHeaders(HeaderNames.ContentType)
+//);
 
 app.UseHttpsRedirection();
 
