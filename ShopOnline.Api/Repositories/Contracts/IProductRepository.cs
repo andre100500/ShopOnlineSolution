@@ -10,5 +10,6 @@ namespace ShopOnline.Api.Repositories.Contracts
         Task<ProductCategory> GetCategory(int id);
 
         Task<IEnumerable<Product>> GetItemsByCategory(int id);
+        Task<IEnumerable<User>> GetUser(string userName, string password);
     }
 }

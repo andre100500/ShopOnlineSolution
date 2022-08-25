@@ -46,6 +46,13 @@ namespace ShopOnline.Api.Repositories
                 .Where(p => p.Id == id).ToListAsync();
             return (IEnumerable<Product>)products;
         }
+
+        public async Task<IEnumerable<User>> GetUser(string userName, string password)
+        {
+            var products = await _context.Users.FirstOrDefaultAsync(u => u.UserName == userName && u.Password == password);
+            return (IEnumerable<User>)products;
+        }
+
     }
 }
 
