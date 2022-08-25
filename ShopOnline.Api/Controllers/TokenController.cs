@@ -22,19 +22,20 @@ namespace ShopOnline.Api.Controllers
             _productRepository = productRepository;
         }
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<User>>> Post(string userName, string password)
+        public async Task<ActionResult<IEnumerable<User>>> Post(User users)
         {
             try
             {
-                var userData = _productRepository.GetUser(userName, password);
-                if(userData != null)
+                await _productRepository.GetUser(users);
+                if(users != null)
                 {
                     var claim = new[]
                     {
                         new Claim (JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("Id", userData.Id.ToString()),
+                        new Claim("Id", users.Id.ToString()),
+                        new Claim("UserName",users.UserName)
                     };
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
                     var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

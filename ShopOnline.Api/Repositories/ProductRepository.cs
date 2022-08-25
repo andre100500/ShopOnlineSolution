@@ -47,9 +47,9 @@ namespace ShopOnline.Api.Repositories
             return (IEnumerable<Product>)products;
         }
 
-        public async Task<IEnumerable<User>> GetUser(string userName, string password)
+        public async Task<IEnumerable<User>> GetUser(User users)
         {
-            var products = await _context.Users.FirstOrDefaultAsync(u => u.UserName == userName && u.Password == password);
+            var products = await _context.Users.FirstOrDefaultAsync(u => u.UserName == users.UserName && u.Password == users.Password);
             return (IEnumerable<User>)products;
         }
 
